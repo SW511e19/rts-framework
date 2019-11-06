@@ -1,6 +1,4 @@
 import task
-import datetime
-import threading
 
 
 class OCW_Task(task.Task):

@@ -1,6 +1,4 @@
 import task
-import datetime
-import threading
 
 
 class PPC_Task(task.Task):
