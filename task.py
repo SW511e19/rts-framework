@@ -1,11 +1,6 @@
 import datetime
 import threading
 
-
-def get_time_ms():
-    return int(datetime.datetime.timestamp(datetime.datetime.now()) * 1000)
-
-
 class Task(threading.Thread):
 
     def __init__(self, startTime, deadline, priority):
@@ -24,10 +19,3 @@ class Task(threading.Thread):
 
     def resume_task(self):
         self.is_running = True
-
-    def is_task_running(self):
-        return "Task is : {}".format(self.is_running)
-
-
-def make_task(startTime, deadline, priority):
-    return Task(startTime, deadline, priority)
