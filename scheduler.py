@@ -19,7 +19,6 @@ class Scheduler(threading.Thread):
             timeslice(self.task_lst)
 
 
-
 def get_time_ms():
     return int(datetime.datetime.timestamp(datetime.datetime.now()) * 1000)
 
@@ -35,10 +34,16 @@ def isHighestPriority(task_list, task):
     return highest_prio_task
 
 
+def hasExceededDeadline(task):
+    deadline = task.startTime() + task.deadline
+    return deadline > get_time_ms
+
+
 def timeslice(task_list):
 
     # Sets the default task to be the lowest
     active_task = SBM
+    first_run_check = 0
 
     while (True):
         # check if SBM is the highest prio -> Yes
@@ -46,10 +51,17 @@ def timeslice(task_list):
         if (active_task != task_to_run):
             print("SBM is not the highest prio anymore")
             active_task = task_to_run
-            # TODO kill current thread
-            # TODO start thread with task (task_to_run)
+
         if (active_task == task_to_run):
             print("Active Task is the highest prio")
+            # Check if the deadline has exceeded, kills the thread if it has
+            # Run the tasks if it is not running
+            if (not active_task.is_running):
+                active_task.start_task()
+                if (first_run_check > 0):
+                    task_list = taskDone(task_list, active_task)
+                first_run_check += 1
+
         time.sleep(1)
 
 
@@ -58,12 +70,11 @@ def taskDone(task_list, task):
     task_list = sorted(task_list, key=lambda task: task.priority, reverse=True)
     return task_list
 
+
 def taskAppend(task_list, task):
     task_list.append(task)
     task_list = sorted(task_list, key=lambda task: task.priority, reverse=True)
     return task_list
-
-
 
 
 # Priority is scheduled from incrementally, from 100 being the lowest and 500 being the highest.
