@@ -16,7 +16,8 @@ class Scheduler(threading.Thread):
 
     def run(self) -> None:
         while True:
-            timeslice(self.task_lst)
+            #timeslice(self.task_lst)
+            print("asd")
 
 
 def get_time_ms():
@@ -40,12 +41,10 @@ def hasExceededDeadline(task):
 
 
 def timeslice(task_list):
-
     # Sets the default task to be the lowest
     active_task = SBM
-    first_run_check = 0
-
     while (True):
+        print(task_list[0])
         # check if SBM is the highest prio -> Yes
         task_to_run = isHighestPriority(task_list, active_task)
         if (active_task != task_to_run):
@@ -57,10 +56,9 @@ def timeslice(task_list):
             # Check if the deadline has exceeded, kills the thread if it has
             # Run the tasks if it is not running
             if (not active_task.is_running):
+                if (active_task.task_completed == True):
+                    task_list = taskDone(self.task_list, active_task)
                 active_task.start_task()
-                if (first_run_check > 0):
-                    task_list = taskDone(task_list, active_task)
-                first_run_check += 1
 
         time.sleep(1)
 
@@ -98,5 +96,25 @@ task_list.append(asd)
 task_list.append(asd2)
 task_list.append(BCW)
 
-# Launches the loop, ticking every time slice
-timeslice(task_list)
+# Sets the default task to be the lowest
+active_task = SBM
+while (True):
+        print(task_list[0])
+        print("active_task : " + str(active_task))
+        # check if SBM is the highest prio -> Yes
+        task_to_run = isHighestPriority(task_list, active_task)
+        if (active_task != task_to_run):
+            print("SBM is not the highest prio anymore")
+            active_task = task_to_run
+
+        if (active_task == task_to_run):
+            print("Active Task is the highest prio")
+            # Check if the deadline has exceeded, kills the thread if it has
+            # Run the tasks if it is not running
+            if (not active_task.is_running):
+                if (active_task.task_completed == True):
+                    task_list = taskDone(task_list, active_task)
+                    task_list.remove(SBM)
+                active_task.start_task()
+
+        time.sleep(1)

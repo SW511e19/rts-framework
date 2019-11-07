@@ -7,5 +7,6 @@ class OCW_Task(task.Task):
 
     def task_body(self):
       #TODO not yet implemented
+      self.task_completed = True
       return
       

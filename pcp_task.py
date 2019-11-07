@@ -9,4 +9,5 @@ class PCP_Task(task.Task):
         print("Start PCP")
         time.sleep(3)
         print("Done with PCP")
+        self.task_completed = True
         return

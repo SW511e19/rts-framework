@@ -8,7 +8,9 @@ class SBM_Task(task.Task):
       print("Start SBM")
       time.sleep(3)
       print("Done with SBM")
+      self.task_completed = True
       return
+
   
     def __init__(self, startTime, deadline=1000, priority=9000):
         super().__init__(startTime, deadline, priority)
