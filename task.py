@@ -33,6 +33,11 @@ class Task(threading.Thread):
     # method for stopping a task
     def start_task(self):
         self.is_running = True
-
+        
+    # method for stopping a task
+    def end_task(self):
+        self.is_running = False
+        self.task_completed = True
+        
     def killThread(self):
         self.killThread = True

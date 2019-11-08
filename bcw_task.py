@@ -1,4 +1,5 @@
 import task
+import time
 
 
 class BCW_Task(task.Task):
@@ -6,6 +7,8 @@ class BCW_Task(task.Task):
         super().__init__(startTime, deadline, priority)
 
     def task_body(self):
-      #TODO not yet implemented
-      self.task_completed = True
+      print("Start BCW")
+      time.sleep(3)
+      print("Done with BCW")
+      self.end_task()
       return

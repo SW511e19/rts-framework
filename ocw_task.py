@@ -1,4 +1,5 @@
 import task
+import time
 
 
 class OCW_Task(task.Task):
@@ -6,7 +7,8 @@ class OCW_Task(task.Task):
         super().__init__(startTime, deadline, priority)
 
     def task_body(self):
-      #TODO not yet implemented
-      self.task_completed = True
+      print("Start OCW")
+      time.sleep(3)
+      print("Done with OCW")
+      self.end_task()
       return
-      

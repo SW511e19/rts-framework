@@ -8,7 +8,7 @@ class SBM_Task(task.Task):
       print("Start SBM")
       time.sleep(3)
       print("Done with SBM")
-      self.task_completed = True
+      self.end_task()
       return
 
   
