@@ -30,7 +30,7 @@ class Task(threading.Thread):
         # no implementation in super class
         return
 
-    # method for stopping a task
+    # method for starting a task
     def start_task(self):
         self.is_running = True
 
