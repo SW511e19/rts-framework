@@ -6,14 +6,26 @@ import pcp_task
 import ppc_task
 import sbm_task
 import time
+import ev3dev.ev3 as ev3
 
 
 class Scheduler(threading.Thread):
     
     def calibrateMachine():
+        backWheel = ev3.LargeMotor('outA')
+        frontWheel = ev3.LargeMotor('outB')
         print("Calibration for 20 seconds")
-        time.sleep(20)
-        print("Done calibrating")
+        position = 0
+        print("Starting Calibration...")
+        backWheel.run_to_abs_pos(position_sp=position, speed_sp = 1000)
+        frontWheel.run_to_abs_pos(position_sp=position, speed_sp = 1000)
+        time.sleep(30)
+        backWheel.run_to_abs_pos(position_sp=position, speed_sp = 50)
+        frontWheel.run_to_abs_pos(position_sp=position, speed_sp = 50)
+        time.sleep(30)
+        print("Calibrated")
+        print("Place cards within 20 seconds...")
+        time.sleep(10)
     calibrateMachine()
     print("Done with Card and Calibration")
     task_lst = []
