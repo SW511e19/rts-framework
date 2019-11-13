@@ -9,6 +9,13 @@ import time
 
 
 class Scheduler(threading.Thread):
+    
+    def calibrateMachine():
+        print("Calibration for 20 seconds")
+        time.sleep(20)
+        print("Done calibrating")
+    calibrateMachine()
+    print("Done with Card and Calibration")
     task_lst = []
 
     def __init__(self):
@@ -87,7 +94,8 @@ def default_task_list():
 
 # Priority is scheduled from incrementally, from 100 being the lowest and 500 being the highest.
 # TODO : Add each at the end of each task.
-BCW = bcw_task.BCWTask(get_time_ms, 1000, 500)  # Back Wheel Task (multiple cards)
+# Back Wheel Task (multiple cards)
+BCW = bcw_task.BCWTask(get_time_ms, 1000, 500)
 OCW = ocw_task.OCWTask(get_time_ms, 1000, 400)  # Front Wheel Task (one card)
 PPC = ppc_task.PPCTask(get_time_ms)  # Communication wth Raspberry Pi
 PCP = pcp_task.PCPTask(get_time_ms, 1000, 200)  # Piston to push the card

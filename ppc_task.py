@@ -1,6 +1,7 @@
 import task
 import time
 
+globals()['position_ppc'] = 0
 
 class PPCTask(task.Task):
     def __init__(self, startTime, deadline=1000, priority=1337):
@@ -8,7 +9,8 @@ class PPCTask(task.Task):
 
     def task_body(self):
         print("Start PPC")
-        time.sleep(3)
+        print('The position is:', position_ppc)
+        globals()['position_ppc'] = position_ppc + 1000
         print("Done with PPC")
         self.end_task()
         return

@@ -1,6 +1,10 @@
-import task
+from time import perf_counter
 import time
+import socket
+import task
 
+#backWheel = ev3.LargeMotor('outA')
+globals()['position_sbm'] = 0
 
 class SBMTask(task.Task):
     def __init__(self, startTime, deadline=1000, priority=9000):
@@ -8,7 +12,8 @@ class SBMTask(task.Task):
 
     def task_body(self):
         print("Start SBM")
-        time.sleep(3)
+        print('The position is:', position_sbm)
+        globals()['position_sbm'] = position_sbm + 1000
         print("Done with SBM")
         self.end_task()
         return

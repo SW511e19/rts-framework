@@ -1,6 +1,7 @@
 import task
 import time
 
+globals()['position_bcw'] = 0
 
 class BCWTask(task.Task):
     def __init__(self, startTime, deadline=1000, priority=9000):
@@ -8,7 +9,8 @@ class BCWTask(task.Task):
 
     def task_body(self):
         print("Start BCW")
-        time.sleep(3)
+        print('The position is:', position_bcw)
+        globals()['position_bcw'] = position_bcw + 1000
         print("Done with BCW")
         self.end_task()
         return
