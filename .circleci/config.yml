@@ -31,7 +31,7 @@ jobs: # A basic unit of work in a run
           paths:
             - ".venv"
             - "/usr/local/bin"
-            - "/usr/local/lib/python3.6/site-packages"
+            - "/usr/local/lib/python3.7/site-packages"
       - run:
           command: |
             pipenv run python test.py test
