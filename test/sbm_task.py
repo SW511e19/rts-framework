@@ -2,7 +2,6 @@ from time import perf_counter
 import time
 import socket
 import task
-import ev3dev.ev3 as ev3
 
 
 

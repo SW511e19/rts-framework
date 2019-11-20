@@ -1,6 +1,5 @@
 import task
 import time
-import ev3dev.ev3 as ev3
 
 globals()['position_pcp'] = 0
 
